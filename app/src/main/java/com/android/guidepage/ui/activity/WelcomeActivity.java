@@ -1,4 +1,4 @@
-package com.android.guidepage;
+package com.android.guidepage.ui.activity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,6 +12,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.android.guidepage.R;
+import com.android.guidepage.adapter.ViewPagerAdapter;
 import com.android.guidepage.util.SharedPreferencesUtil;
 
 import java.util.ArrayList;
@@ -33,6 +35,7 @@ public class WelcomeActivity  extends AppCompatActivity implements View.OnClickL
     private int currentIndex;//表示前一个视图的索引
     private Context context;
     private SharedPreferencesUtil sharedPreferencesUtil;
+    private boolean isFirstLogin = true;
 
 
     @Override
@@ -98,17 +101,18 @@ public class WelcomeActivity  extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void onClick(View v) {
-            Log.i("wj","111111");
-            Intent intent=new Intent(context,MainActivity.class);
+        isFirstLogin = sharedPreferencesUtil.getBooleanValue(SharedPreferencesUtil.login);
+        if (!isFirstLogin){
+            Intent intent = new Intent(context,MainActivity.class);
             startActivity(intent);
-      //      SharePerferenceUtil.setFirstLogin(context, false);//设置不是第一次登陆
-            sharedPreferencesUtil.putBooleanValue(false);
             finish();
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-        //圆圈点击后执行
-//        int position = (Integer) v.getTag();
-//        setCurrentView(position);
-//        setCurrentDot(position);
+        }else{
+            Intent intent=new Intent(context, LoginActivity.class);
+            startActivity(intent);
+            finish();
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        }
     }
 
     //设置当前视图
@@ -140,7 +144,6 @@ public class WelcomeActivity  extends AppCompatActivity implements View.OnClickL
     @Override
     protected void onStart() {
         super.onStart();
-        Log.i("wj","WelcomeActivity");
     }
 
 

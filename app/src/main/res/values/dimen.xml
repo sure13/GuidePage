@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="activity_vertical_margin">15dp</dimen>
+    <dimen name="activity_horizontal_margin">15dp</dimen>
+    <dimen name="radio_margin">36dp</dimen>
+    <dimen name="framelayout_margin">79dp</dimen>
+    <dimen name="text_size_20sp">20dp</dimen>
+    <dimen name="text_size_15sp">15sp</dimen>
+    <dimen name="text_size_18sp">18sp</dimen>
+    <dimen name="phone_login_text">20dp</dimen>
+    <dimen name="layout_margin_left">30dp</dimen>
+</resources>

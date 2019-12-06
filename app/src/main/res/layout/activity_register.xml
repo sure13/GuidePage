@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/milk_white"
+    android:orientation="vertical"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dip"
+        android:background="?colorPrimary"
+        >
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:text="@string/register_button"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_20sp" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/register_bg_color"
+        android:orientation="vertical"
+        android:paddingBottom="50dip">
+
+        <net.anumbrella.customedittext.FloatLabelView
+            android:id="@+id/register_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:layout_marginTop="10dip"
+            android:hint="@string/phone"
+            android:layout="@layout/custom_edittext"
+            android:textColorHint="@color/register_hint_text_color"
+            app:bottomDistance="2dip"
+            app:leftDistance="1dip" />
+
+
+        <net.anumbrella.customedittext.FloatLabelView
+            android:id="@+id/register_username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:layout_marginTop="10dip"
+            android:hint="@string/name"
+            android:layout="@layout/custom_edittext"
+            android:textColorHint="@color/register_hint_text_color"
+            app:bottomDistance="2dip"
+            app:leftDistance="1dip" />
+
+
+        <net.anumbrella.customedittext.FloatLabelView
+            android:id="@+id/register_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:layout_marginTop="10dip"
+            android:hint="@string/password"
+            android:layout="@layout/custom_edittext"
+            android:textColorHint="@color/register_hint_text_color"
+            app:bottomDistance="2dip"
+            app:leftDistance="1dip" />
+
+
+        <net.anumbrella.customedittext.FloatLabelView
+            android:id="@+id/register_password_again"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:layout_marginTop="10dip"
+            android:hint="@string/password_again"
+            android:layout="@layout/custom_edittext"
+            android:textColorHint="@color/register_hint_text_color"
+            app:bottomDistance="2dip"
+            app:leftDistance="1dip" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dip"
+            android:gravity="center">
+
+            <RadioButton
+                android:id="@+id/service_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:ignore="InvalidId"
+                />
+
+            <TextView
+                android:id="@+id/register_info1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="@string/register_info"
+                android:layout_marginLeft="@dimen/layout_margin_left"/>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <Button
+            android:id="@+id/btn_regist"
+            android:layout_width="0dip"
+            android:layout_height="40dip"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/button_login"
+            android:text="@string/register_button"
+            android:textColor="@color/white"/>
+    </LinearLayout>
+
+</LinearLayout>
