@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--suppress AndroidDomInspection -->
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+
+        <item android:title="底部导航栏">
+            <menu>
+                <item
+                    android:id="@+id/modle"
+                    android:icon="@mipmap/icon"
+                    android:title="@string/modle" />
+                <item
+                    android:id="@+id/setting"
+                    android:icon="@mipmap/icon"
+                    android:title="@string/setting" />
+                <item
+                    android:id="@+id/farvorate"
+                    android:icon="@mipmap/icon"
+                    android:title="@string/farvorate" />
+            </menu>
+
+        </item>
+
+        <item android:title="其他">
+            <menu>
+                <item
+                    android:id="@+id/theam"
+                    android:icon="@mipmap/icon"
+                    android:title="@string/theam"/>
+
+                <item
+                    android:id="@+id/about"
+                    android:icon="@mipmap/icon"
+                    android:title="@string/about" />
+            </menu>
+        </item>
+    </group>
+
+</menu>

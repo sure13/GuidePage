@@ -24,6 +24,7 @@ public class DaoHelper   extends SQLiteOpenHelper {
           + Dao.ID  + " INTEGER PRIMARY KEY AUTOINCREMENT, "
            + Dao.NAME  + " VARCHAR(30),"
            + Dao.ACCOUNT + " VARCHAR(30),"
+           + Dao.PICTURE + " BLOB,"
            + Dao.PASSWORD  + " VARCHAR(30)" + ");");
 
    initData(sqLiteDatabase);
