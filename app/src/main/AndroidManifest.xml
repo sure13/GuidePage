@@ -9,6 +9,9 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <!--读取SD卡的权限:打开相册选取图片所必须的权限-->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+
 
     <application
         android:allowBackup="true"
@@ -27,6 +30,13 @@
         <activity android:name=".ui.activity.LoginActivity"></activity>
         <activity android:name=".ui.activity.MainActivity"></activity>
         <activity android:name=".ui.activity.WelcomeActivity"></activity>
+
+        <activity android:name=".ui.activity.AboutActivity"></activity>
+        <activity android:name=".ui.activity.TheamActivity"></activity>
+        <activity android:name=".ui.activity.FarvorateActivity"></activity>
+        <activity android:name=".ui.activity.SettingActivity"></activity>
+        <activity android:name=".ui.activity.ModleActivity"></activity>
+
         <provider
             android:authorities="com.action.test"
             android:name=".Dao.MyProvider"

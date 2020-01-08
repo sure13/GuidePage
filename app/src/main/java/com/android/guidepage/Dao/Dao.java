@@ -8,7 +8,7 @@ public class Dao {
 
     public static final String DATABASE_NAME = "test.db";
     public  static final String USER_TABLE = "user";
-    public static final int DATABASE_VERSION = 2;
+    public static final int DATABASE_VERSION = 1;
 
     //user table
     public static final String ID = "_id";

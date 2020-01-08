@@ -41,4 +41,17 @@ public class SharedPreferencesUtil {
     }
 
 
+
+    public static int getIntValue(String key){
+        int value = sharedPreferences.getInt(key,3);
+        return value;
+    }
+
+    public static void putIntValue(String key,int value){
+        editor.putInt(key,value);
+        editor.commit();
+
+    }
+
+
 }

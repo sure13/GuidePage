@@ -3,13 +3,12 @@ package com.android.guidepage.ui.activity;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.app.AlertDialog;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.content.ContentResolver;
 import android.content.ContentValues;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
@@ -17,13 +16,12 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
-import android.util.Base64;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.guidepage.Dao.Dao;
@@ -37,10 +35,8 @@ import com.google.android.material.navigation.NavigationView;
 import com.yanzhenjie.album.Album;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,View.OnClickListener{
@@ -56,6 +52,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private RelativeLayout relativeLayout_news;
     private RelativeLayout relativeLayout_contacts;
     private RelativeLayout relativeLayout_setting;
+    private TextView textName;
 
     private OneFragment oneFragment;
     private TwoFragment twoFragment ;
@@ -89,6 +86,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         relativeLayout_contacts = (RelativeLayout) findViewById(R.id.contacts_layout);
         relativeLayout_news = (RelativeLayout) findViewById(R.id.news_layout);
         relativeLayout_setting = (RelativeLayout) findViewById(R.id.setting_layout);
+        textName = (TextView) findViewById(R.id.text_name);
 
     }
 
@@ -107,6 +105,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private void initData() {
         setTabSelection(0);
         items = new String[]{"拍照中获取","从相册中选择","取消"};
+        String name = getName();
+        Log.i("wj","name ==" + name);
+      //  textName.setText("name");
     }
 
 
@@ -120,13 +121,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void setTabSelection(int index) {
-        manager = getFragmentManager();
+        manager = getSupportFragmentManager();
         transaction = manager.beginTransaction();
         hideFragment(transaction);
         switch (index){
             case 0:
                 if (oneFragment == null){
-                    oneFragment = OneFragment.getInstance();
+                    oneFragment = OneFragment.getInstance(this);
                     transaction.add(R.id.content,oneFragment);
                 }else{
                     transaction.show(oneFragment);
@@ -135,7 +136,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             case 1:
                 if (twoFragment == null){
-                    twoFragment = TwoFragment.getInstance();
+                    twoFragment = TwoFragment.getInstance(this);
                     transaction.add(R.id.content,twoFragment);
                 }else{
                     transaction.show(twoFragment);
@@ -306,6 +307,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
+    private String getName(){
+        ContentResolver resolver = getContentResolver();
+        String name = null;
+        Uri uri = Uri.parse("content://com.action.test/" + Dao.USER_TABLE );
+        Cursor cursor = resolver.query(uri,null,null,null,null);
+        if (cursor.moveToFirst()){
+            name = cursor.getString(cursor.getColumnIndex(Dao.NAME));
+            return name;
+        }
+        return name;
+
+
+    }
+
 
     private void savePicturePath(byte[] bytes) {
         ContentResolver resolver = getContentResolver();
@@ -337,18 +352,28 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         switch (item.getItemId()){
             case R.id.modle:
                 Toast.makeText(this,"this is modle ",Toast.LENGTH_LONG).show();
+                Intent intent_modle = new Intent(MainActivity.this,ModleActivity.class);
+                startActivity(intent_modle);
                 break;
             case  R.id.setting:
                 Toast.makeText(this,"this is setting ",Toast.LENGTH_LONG).show();
+                Intent intent_setting = new Intent(MainActivity.this,SettingActivity.class);
+                startActivity(intent_setting);
                 break;
             case R.id.farvorate:
                 Toast.makeText(this,"this is farvorate ",Toast.LENGTH_LONG).show();
+                Intent intent_farvorate = new Intent(MainActivity.this,FarvorateActivity.class);
+                startActivity(intent_farvorate);
                 break;
             case R.id.theam:
                 Toast.makeText(this,"this is theam ",Toast.LENGTH_LONG).show();
+                Intent intent_theam = new Intent(MainActivity.this,TheamActivity.class);
+                startActivity(intent_theam);
                 break;
             case R.id.about:
                 Toast.makeText(this,"this is about ",Toast.LENGTH_LONG).show();
+                Intent intent_about = new Intent(MainActivity.this,AboutActivity.class);
+                startActivity(intent_about);
                 break;
         }
         return false;

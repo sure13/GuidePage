@@ -4,14 +4,33 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-    <androidx.appcompat.widget.SearchView
-        android:id="@+id/serachview"
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:layout_margin="10dp"
-        android:background="@drawable/circle_search"
-        app:iconifiedByDefault="false">
+        android:layout_margin="10dp">
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/serachview"
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:background="@drawable/circle_search"
+            app:iconifiedByDefault="false">
+        </androidx.appcompat.widget.SearchView>
+        <ImageView
+            android:id="@+id/image_search"
+            android:src="@mipmap/timg"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
 
-    </androidx.appcompat.widget.SearchView>
+    <include layout="@layout/tab_layout"></include>
+
+
+    <Button
+        android:id="@+id/test"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Test"/>
+
 
 </LinearLayout>

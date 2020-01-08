@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/setting_image"
+        android:layout_width="100dp"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center_horizontal"
+        android:src="@mipmap/ic_mine_setting"
+        android:layout_height="100dp"/>
+
+    <TextView
+        android:id="@+id/edit_info"
+        android:text="主题选择"
+        android:textSize="26sp"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center_vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"/>
+
+    <LinearLayout
+        android:id="@+id/red_theam"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="horizontal">
+        <TextView
+            android:textSize="16sp"
+            android:text="红色主题"
+            android:gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"/>
+        <ImageView
+            android:id="@+id/red_theam_image"
+            android:src="@mipmap/open"
+            android:layout_width="40dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="300dp"
+            android:layout_height="20dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/green_theam"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="horizontal">
+        <TextView
+            android:textSize="16sp"
+            android:text="绿色主题"
+            android:gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"/>
+        <ImageView
+            android:id="@+id/green_theam_image"
+            android:src="@mipmap/open"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="300dp"
+            android:layout_width="40dp"
+            android:layout_height="20dp"/>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/blue_theam"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="horizontal">
+        <TextView
+            android:textSize="16sp"
+            android:text="蓝色主题"
+            android:gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"/>
+        <ImageView
+            android:id="@+id/blue_theam_image"
+            android:src="@mipmap/open"
+            android:layout_width="40dp"
+            android:layout_marginLeft="300dp"
+            android:layout_gravity="center_vertical"
+            android:layout_height="20dp"/>
+    </LinearLayout>
+
+
+</LinearLayout>
