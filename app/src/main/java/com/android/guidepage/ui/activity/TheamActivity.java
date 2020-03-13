@@ -1,22 +1,16 @@
 package com.android.guidepage.ui.activity;
 
-import android.content.Context;
-import android.os.Bundle;
-import android.util.AttributeSet;
-import android.view.LayoutInflater;
+
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.android.guidepage.R;
+import com.android.guidepage.base.BaseActivity;
 import com.android.guidepage.util.SharedPreferencesUtil;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.LayoutInflaterCompat;
-import androidx.core.view.LayoutInflaterFactory;
 
-public class TheamActivity extends AppCompatActivity implements View.OnClickListener {
+public class TheamActivity extends BaseActivity implements View.OnClickListener {
 
     private LinearLayout redLinearLayout;
     private LinearLayout greenLinearLayout;
@@ -27,17 +21,14 @@ public class TheamActivity extends AppCompatActivity implements View.OnClickList
     private ImageView blueImageView;
 
 
+
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.theam_activity);
-        initView();
-        initData();
-        initListener();
+    public int getResId() {
+        return R.layout.theam_activity;
     }
 
 
-    private void initView() {
+    public void initView() {
         redLinearLayout = (LinearLayout) findViewById(R.id.red_theam);
         greenLinearLayout = (LinearLayout) findViewById(R.id.green_theam);
         blueLinearLayout = (LinearLayout) findViewById(R.id.blue_theam);
@@ -46,14 +37,16 @@ public class TheamActivity extends AppCompatActivity implements View.OnClickList
         greenImageView = (ImageView) findViewById(R.id.green_theam_image);
     }
 
-    private void initData() {
+    public void initData() {
         redImageView.setVisibility(View.GONE);
         greenImageView.setVisibility(View.GONE);
         blueImageView.setVisibility(View.VISIBLE);
     }
 
 
-    private void initListener() {
+
+
+    public void initListener() {
         redLinearLayout.setOnClickListener(this);
         greenLinearLayout.setOnClickListener(this);
         blueLinearLayout.setOnClickListener(this);
@@ -64,15 +57,21 @@ public class TheamActivity extends AppCompatActivity implements View.OnClickList
         switch (v.getId()){
             case R.id.red_theam:
                 setTheamColor(redImageView);
-                SharedPreferencesUtil.putIntValue("theam",1);
+             //   setTheme(R.style.AppThemeRed);
+            //    recreate();
+
                 break;
             case R.id.green_theam:
                 setTheamColor(greenImageView);
-                SharedPreferencesUtil.putIntValue("theam",2);
+            //    setTheme(R.style.AppThemeGreen);
+            //    recreate();
+
                 break;
             case R.id.blue_theam:
                 setTheamColor(blueImageView);
-                SharedPreferencesUtil.putIntValue("theam",3);
+            //    setTheme(R.style.AppTheme);
+            //    recreate();
+
                 break;
         }
     }
@@ -92,14 +91,34 @@ public class TheamActivity extends AppCompatActivity implements View.OnClickList
         int theamValue = SharedPreferencesUtil.getIntValue("theam");
         switch (theamValue){
             case 1:
-
+                setTheamColor(redImageView);
                 break;
             case 2:
+                setTheamColor(greenImageView);
                 break;
             case 3:
+                setTheamColor(blueImageView);
                 break;
         }
     }
 
-   
+//    public void initTheam(){
+//        int theamValue = SharedPreferencesUtil.getIntValue("theam");
+//        switch (theamValue){
+//            case 1:
+//                setTheme(R.style.AppThemeRed);
+//                Toast.makeText(this,"red theam",Toast.LENGTH_SHORT).show();
+//                break;
+//            case 2:
+//                setTheme(R.style.AppThemeGreen);
+//                Toast.makeText(this,"green theam",Toast.LENGTH_SHORT).show();
+//                break;
+//            case 3:
+//                setTheme(R.style.AppTheme);
+//                Toast.makeText(this,"blue theam",Toast.LENGTH_SHORT).show();
+//                break;
+//        }
+//    }
+
+
 }

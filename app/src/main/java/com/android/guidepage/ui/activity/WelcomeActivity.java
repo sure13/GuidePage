@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 
 import com.android.guidepage.R;
 import com.android.guidepage.adapter.ViewPagerAdapter;
+import com.android.guidepage.base.BaseActivity;
 import com.android.guidepage.util.SharedPreferencesUtil;
 
 import java.util.ArrayList;
@@ -22,7 +23,7 @@ import java.util.List;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
-public class WelcomeActivity  extends AppCompatActivity implements View.OnClickListener,ViewPager.OnPageChangeListener{
+public class WelcomeActivity  extends BaseActivity implements View.OnClickListener,ViewPager.OnPageChangeListener{
 
     private ViewPager viewPager;
     private LinearLayout pointLayout;
@@ -39,26 +40,27 @@ public class WelcomeActivity  extends AppCompatActivity implements View.OnClickL
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void initBaseData() {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.activity_welcome);
         context = WelcomeActivity.this;
         if(Build.VERSION.SDK_INT >= 19) {// android 4.4 以上 沉浸式状态栏
             Window window = getWindow();
             window.addFlags(67108864);
         }
-        initView();
-        initData();
+    }
+
+    @Override
+    public int getResId() {
+        return R.layout.activity_welcome;
     }
 
 
-    private void initView() {
+    public void initView() {
         viewPager = (ViewPager) findViewById(R.id.viewPager);
         pointLayout=(LinearLayout) findViewById(R.id.pointLayout);
     }
 
-    private void initData() {
+    public void initData() {
         views = new ArrayList();
         sharedPreferencesUtil = new SharedPreferencesUtil(context);
         initGuidePage();

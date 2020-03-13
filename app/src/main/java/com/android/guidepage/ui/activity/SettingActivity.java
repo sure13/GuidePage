@@ -7,32 +7,31 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.android.guidepage.R;
+import com.android.guidepage.base.BaseActivity;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class SettingActivity extends AppCompatActivity implements View.OnClickListener {
+public class SettingActivity extends BaseActivity implements View.OnClickListener {
 
 
     private Button signOutButton;
     private Button editInfoButton;
 
 
+
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
-        super.onCreate(savedInstanceState, persistentState);
-        setContentView(R.layout.setting_activity);
-        initView();
-        initListener();
+    public int getResId() {
+        return R.layout.setting_activity;
     }
 
-    private void initView() {
+    public void initView() {
         signOutButton = (Button) findViewById(R.id.sign_out);
         editInfoButton = (Button) findViewById(R.id.edit_info);
     }
 
 
-    private void initListener() {
+    public void initListener() {
         signOutButton.setOnClickListener(this);
         editInfoButton.setOnClickListener(this);
     }

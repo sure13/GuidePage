@@ -19,6 +19,8 @@ import com.android.guidepage.Dao.Dao;
 import com.android.guidepage.R;
 
 import net.anumbrella.customedittext.FloatLabelView;
+
+import com.android.guidepage.base.BaseActivity;
 import com.android.guidepage.util.pubFun;
 
 
@@ -26,7 +28,7 @@ import com.android.guidepage.util.pubFun;
  * Created by Administrator on 2019/7/30 0030.
  */
 
-public class RegisterActivity extends Activity  implements View.OnClickListener{
+public class RegisterActivity extends BaseActivity implements View.OnClickListener{
 
 
     private Button button_register;
@@ -42,18 +44,13 @@ public class RegisterActivity extends Activity  implements View.OnClickListener{
 
 
     @Override
-    public void onCreate( Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
-        initView();
-        initListener();
-        initData();
-
+    public int getResId() {
+        return R.layout.activity_register;
     }
 
 
 
-    private void initListener() {
+    public void initListener() {
 
         button_register.setOnClickListener(this);
         service_text.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -70,7 +67,7 @@ public class RegisterActivity extends Activity  implements View.OnClickListener{
         });
     }
 
-    private void initView() {
+    public void initView() {
         name_float = (FloatLabelView) findViewById(R.id.register_username);
         password_again_float = (FloatLabelView) findViewById(R.id.register_password_again);
         password_float = (FloatLabelView) findViewById(R.id.register_password);
@@ -80,7 +77,7 @@ public class RegisterActivity extends Activity  implements View.OnClickListener{
     }
 
 
-    private void initData() {
+    public void initData() {
 
         password_float.getEditText().setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
         password_again_float.getEditText().setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);

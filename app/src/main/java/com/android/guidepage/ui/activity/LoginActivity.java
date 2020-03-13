@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.android.guidepage.Dao.Dao;
 import com.android.guidepage.R;
+import com.android.guidepage.base.BaseActivity;
 import com.android.guidepage.util.SharedPreferencesUtil;
 
 import net.anumbrella.customedittext.FloatLabelView;
@@ -26,7 +27,7 @@ import com.android.guidepage.util.pubFun;
  * Created by Administrator on 2019/7/26 0026.
  */
 
-public class LoginActivity extends Activity implements View.OnClickListener {
+public class LoginActivity extends BaseActivity implements View.OnClickListener {
 
    private Button button_login;
    private Button button_register;
@@ -34,20 +35,13 @@ public class LoginActivity extends Activity implements View.OnClickListener {
    private FloatLabelView phone_float;
    private FloatLabelView password_float;
    private SharedPreferencesUtil sharedPreferencesUtil;
-
-
    private ProgressDialog dialog;
 
 
 
     @Override
-    public void onCreate( Bundle savedInstanceState ) {
-        super.onCreate(savedInstanceState );
-        setContentView(R.layout.login);
-        initView();
-        initListener();
-        initData();
-
+    public int getResId() {
+        return R.layout.login;
     }
 
 
@@ -71,7 +65,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
     }
 
 
-    private void initData() {
+    public void initData() {
         password_float.getEditText().setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
         dialog = new ProgressDialog(this);
         dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
@@ -81,6 +75,8 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         dialog.setCancelable(false);
         sharedPreferencesUtil = new SharedPreferencesUtil(this);
     }
+
+
 
     public void check(){
         String phone = phone_float.getEditText().getText().toString().trim();

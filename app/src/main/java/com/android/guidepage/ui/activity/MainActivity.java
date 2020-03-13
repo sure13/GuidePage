@@ -26,6 +26,7 @@ import android.widget.Toast;
 
 import com.android.guidepage.Dao.Dao;
 import com.android.guidepage.R;
+import com.android.guidepage.base.BaseActivity;
 import com.android.guidepage.ui.fragment.FourFragment;
 import com.android.guidepage.ui.fragment.OneFragment;
 import com.android.guidepage.ui.fragment.ThreeFragment;
@@ -39,20 +40,20 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,View.OnClickListener{
+public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener,View.OnClickListener{
 
 
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     private View view;
     private CircleImageView circleImageView;
+    private TextView textName;
 
     private FrameLayout frameLayout;
     private RelativeLayout relativeLayout_message;
     private RelativeLayout relativeLayout_news;
     private RelativeLayout relativeLayout_contacts;
     private RelativeLayout relativeLayout_setting;
-    private TextView textName;
 
     private OneFragment oneFragment;
     private TwoFragment twoFragment ;
@@ -68,30 +69,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public static final int SELECT_PIC = 0;//从相册选择
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.drawer_layout);
-        initView();
-        initListener();
-        initData();
+    public int getResId() {
+        return R.layout.drawer_layout;
     }
 
-    private void initView(){
+    public void initView(){
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer);
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         view = navigationView.getHeaderView(0);
         circleImageView = (CircleImageView) view.findViewById(R.id.circle);
+        textName = (TextView) view.findViewById(R.id.text_name);
         frameLayout = (FrameLayout) findViewById(R.id.content);
         relativeLayout_message = (RelativeLayout) findViewById(R.id.message_layout);
         relativeLayout_contacts = (RelativeLayout) findViewById(R.id.contacts_layout);
         relativeLayout_news = (RelativeLayout) findViewById(R.id.news_layout);
         relativeLayout_setting = (RelativeLayout) findViewById(R.id.setting_layout);
-        textName = (TextView) findViewById(R.id.text_name);
-
     }
 
 
-    private void initListener() {
+    public void initListener() {
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.setItemIconTintList(null);
         circleImageView.setOnClickListener(this);
@@ -102,12 +98,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
-    private void initData() {
+    public void initData() {
         setTabSelection(0);
         items = new String[]{"拍照中获取","从相册中选择","取消"};
         String name = getName();
         Log.i("wj","name ==" + name);
-      //  textName.setText("name");
+        textName.setText(name);
     }
 
 
@@ -312,7 +308,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         String name = null;
         Uri uri = Uri.parse("content://com.action.test/" + Dao.USER_TABLE );
         Cursor cursor = resolver.query(uri,null,null,null,null);
-        if (cursor.moveToFirst()){
+        if (cursor.moveToNext()){
             name = cursor.getString(cursor.getColumnIndex(Dao.NAME));
             return name;
         }

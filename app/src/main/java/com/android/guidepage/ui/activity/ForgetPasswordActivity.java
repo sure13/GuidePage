@@ -18,6 +18,7 @@ import net.anumbrella.customedittext.FloatLabelView;
 
 import com.android.guidepage.Dao.Dao;
 import com.android.guidepage.R;
+import com.android.guidepage.base.BaseActivity;
 import com.android.guidepage.util.CodeUtils;
 import com.android.guidepage.util.pubFun;
 
@@ -25,7 +26,7 @@ import com.android.guidepage.util.pubFun;
  * Created by Administrator on 2019/7/30 0030.
  */
 
-public class ForgetPasswordActivity extends Activity implements View.OnClickListener{
+public class ForgetPasswordActivity extends BaseActivity implements View.OnClickListener{
 
 
     private FloatLabelView phone_float;
@@ -37,17 +38,13 @@ public class ForgetPasswordActivity extends Activity implements View.OnClickList
     private ProgressDialog dialog;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.forget_password);
-        initView();
-        initListener();
-        initData();
+    public int getResId() {
+        return R.layout.forget_password;
     }
 
 
 
-    private void initView() {
+    public void initView() {
         password_float = (FloatLabelView) findViewById(R.id.find_pass_phone);
         code_float = (FloatLabelView) findViewById(R.id.find_pass_code);
         password_float = (FloatLabelView) findViewById(R.id.find_pass_new);
@@ -57,12 +54,12 @@ public class ForgetPasswordActivity extends Activity implements View.OnClickList
 
 
 
-    private void initListener() {
+    public void initListener() {
         button_change.setOnClickListener(this);
     }
 
 
-    private void initData() {
+    public void initData() {
 
         dialog = new ProgressDialog(this);
         dialog.setMessage("请稍等");
@@ -83,6 +80,8 @@ public class ForgetPasswordActivity extends Activity implements View.OnClickList
             }
         });
     }
+
+
 
 
     @Override
