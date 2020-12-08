@@ -5,32 +5,43 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:layout_margin="10dp">
+        android:orientation="horizontal"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:layout_marginLeft="@dimen/album_dp_10">
         <androidx.appcompat.widget.SearchView
             android:id="@+id/serachview"
-            android:layout_width="wrap_content"
-            android:layout_height="45dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:background="@drawable/circle_search"
+            android:layout_weight="1"
             app:iconifiedByDefault="false">
         </androidx.appcompat.widget.SearchView>
         <ImageView
             android:id="@+id/image_search"
             android:src="@mipmap/timg"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_marginRight="@dimen/album_dp_10"
+            android:layout_weight="8"
             android:layout_height="match_parent"/>
     </LinearLayout>
 
-    <include layout="@layout/tab_layout"></include>
+
+    <include
+        layout="@layout/tab_layout"
+        android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_height="match_parent">
+    </include>
 
 
-    <Button
-        android:id="@+id/test"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Test"/>
+<!--    <Button-->
+<!--        android:id="@+id/test"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Test"/>-->
 
 
 </LinearLayout>

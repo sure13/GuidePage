@@ -3,6 +3,7 @@ package com.android.guidepage.ui.fragment;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -26,6 +27,7 @@ import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.widget.SearchView;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
@@ -37,9 +39,9 @@ public class OneFragment extends Fragment implements View.OnClickListener {
 
     public static OneFragment oneFragment;
 
-    private SearchView searchView;
+    public SearchView searchView;
     private View view;
-    private Button button;
+//    private Button button;
     private ImageView searchImage;
 
     private TabLayout tabLayout;
@@ -89,36 +91,36 @@ public class OneFragment extends Fragment implements View.OnClickListener {
 
     public void initView(View view){
         searchView = (SearchView) view.findViewById(R.id.serachview);
-        button = (Button) view.findViewById(R.id.test);
+//        button = (Button) view.findViewById(R.id.test);
         searchImage = (ImageView) view.findViewById(R.id.image_search);
         tabLayout = (TabLayout) view.findViewById(R.id.tablayout);
         viewPager = (ViewPager) view.findViewById(R.id.tab_view_pager);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-         //       final String url = "http://www.baidu.com//";
-                final String url ="http://www.ifeng.com/" ;
-                new Thread(){
-                    public void run(){
-                        String html = OkHttpUtils.getArticleData(url);
-                        Log.i("wj","html == " + html);
-               //         ArrayList<Article> articles = OkHttpUtils.getArticleList(url);
-                   //     Log.i("wj","articles == " + articles);
-                        //发送信息给handler用于更新UI界面
-//                        Message message = handler.obtainMessage();
-//                        message.what = 1;
-//                        message.obj = articles;
-//                        handler.sendMessage(message);
-                    }
-                }.start();
-
-            }
-        });
+//        button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//         //       final String url = "http://www.baidu.com//";
+//                final String url ="http://www.ifeng.com/" ;
+//                new Thread(){
+//                    public void run(){
+//                        String html = OkHttpUtils.getArticleData(url);
+//                        Log.i("wj","html == " + html);
+//               //         ArrayList<Article> articles = OkHttpUtils.getArticleList(url);
+//                   //     Log.i("wj","articles == " + articles);
+//                        //发送信息给handler用于更新UI界面
+////                        Message message = handler.obtainMessage();
+////                        message.what = 1;
+////                        message.obj = articles;
+////                        handler.sendMessage(message);
+//                    }
+////                }.start();
+//
+//            }
+//        });
     }
 
     private void initListener() {
         searchImage.setOnClickListener(this);
-
+        searchView.setOnClickListener(this);
     }
 
     @Override
@@ -128,12 +130,16 @@ public class OneFragment extends Fragment implements View.OnClickListener {
                 checkPerssion();
                 startZxing();//扫一扫
                 break;
+            case R.id.serachview:
+                searchView.setFocusable(true);
+                break;
             default:
                 break;
 
 
         }
     }
+
 
     private void checkPerssion() {
         if (!(ActivityCompat.checkSelfPermission(mainActivity, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED)
@@ -202,6 +208,7 @@ public class OneFragment extends Fragment implements View.OnClickListener {
     private void initTitltAndFragment() {
         for(int i = 0; i < title.length; i++){
             titleList.add(title[i]);
+            MainActivity.hideFragment();
         }
 
     }

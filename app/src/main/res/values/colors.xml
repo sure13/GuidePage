@@ -17,6 +17,7 @@
     <color name="textColor_item_list_menus">#000</color>
     <color name="addShopping_bg">#5E5E5E</color>
     <color name="gray">#dedede</color>
+    <color name="switch_btn_colors">#87AADC</color>
 
 
     <!--抽屉菜单图标的背景颜色-->

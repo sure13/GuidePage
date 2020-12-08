@@ -55,12 +55,12 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     private RelativeLayout relativeLayout_contacts;
     private RelativeLayout relativeLayout_setting;
 
-    private OneFragment oneFragment;
-    private TwoFragment twoFragment ;
-    private ThreeFragment threeFragment;
-    private FourFragment fourFragment;
-    private FragmentManager manager;
-    private FragmentTransaction transaction ;
+    public static OneFragment oneFragment;
+    public static TwoFragment twoFragment ;
+    public static ThreeFragment threeFragment;
+    public static FourFragment fourFragment;
+    private static FragmentManager manager;
+    private static FragmentTransaction transaction ;
 
     private AlertDialog.Builder dialog;
     private String[] items;
@@ -119,7 +119,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     private void setTabSelection(int index) {
         manager = getSupportFragmentManager();
         transaction = manager.beginTransaction();
-        hideFragment(transaction);
+        hideFragment();
         switch (index){
             case 0:
                 if (oneFragment == null){
@@ -161,7 +161,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         transaction.commit();
     }
 
-    private void hideFragment(FragmentTransaction transaction) {
+    public static void hideFragment() {
         if (oneFragment != null){
             transaction.hide(oneFragment);
         }

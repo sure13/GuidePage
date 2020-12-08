@@ -23,4 +23,6 @@
     <string name="bluetooth">蓝牙</string>
     <string name="on">开</string>
     <string name="off">关</string>
+    <string name="network_connection">请先连接网络！！！！</string>
+    <string name="connetction_error">加载失败，请稍后再试！</string>
 </resources>

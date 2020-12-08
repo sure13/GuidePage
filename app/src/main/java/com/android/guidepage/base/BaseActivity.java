@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.android.guidepage.util.SharedPreferencesUtil;
@@ -21,6 +22,7 @@ public abstract class BaseActivity  extends AppCompatActivity {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         initBaseData();
         setContentView(getResId());
         initView();
