@@ -21,6 +21,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:usesCleartextTraffic="true"
         android:theme="@style/AppTheme">
         <activity android:name=".ui.activity.SplashActivity">
             <intent-filter>
@@ -39,6 +40,9 @@
         <activity android:name=".ui.activity.FarvorateActivity"></activity>
         <activity android:name=".ui.activity.SettingActivity"></activity>
         <activity android:name=".ui.activity.ModleActivity"></activity>
+        <activity android:name=".ui.activity.RegisterActivity"/>
+        <activity android:name=".ui.activity.ForgetPasswordActivity"/>
+        <activity android:name=".view.PhotoShowActivity"/>
 
         <provider
             android:authorities="com.action.test"

@@ -23,4 +23,13 @@ public class Dao {
     public static final  String TEST_NAME = "wxy";
     public static final  String TEST_PASSWORD = "123456";
 
+
+    public  static final String NEWS_TABLE = "news";
+    //news table
+    public static final String NEWS_ID = "news_id";
+    public static final String  NEWS_IMAGE = "news_image";
+    public static final String NEWS_DATA = "news_data";
+    public static final  String NEWS_AUTHOR ="news_author";
+    public static final String NEWS_URL ="news_url";
+
 }

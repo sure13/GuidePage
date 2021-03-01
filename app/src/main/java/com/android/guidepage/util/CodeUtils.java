@@ -83,7 +83,12 @@ public class CodeUtils {
 
 //      这段代码，由于API28版本太高不能使用，所以需要降版本，否则报错
 //        canvas.save(Canvas.ALL_SAVE_FLAG);
-        canvas.restore();
+        try {
+            canvas.restore();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
         return bitmap;
 
     }

@@ -1,5 +1,9 @@
 package com.android.guidepage.rxjava;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.io.Serializable;
 import java.util.List;
 
 public  class MeiZiBean {
@@ -59,7 +63,7 @@ public  class MeiZiBean {
         this.data = data;
     }
 
-    public static class DataBean {
+    public static class DataBean implements Parcelable  {
         /**
          * _id : 5e959250808d6d2fe6b56eda
          * author : 鸢媛
@@ -93,6 +97,35 @@ public  class MeiZiBean {
 
         //isChecked
         private boolean state;
+
+        protected DataBean(Parcel in) {
+            _id = in.readString();
+            author = in.readString();
+            category = in.readString();
+            createdAt = in.readString();
+            desc = in.readString();
+            likeCounts = in.readInt();
+            publishedAt = in.readString();
+            stars = in.readInt();
+            title = in.readString();
+            type = in.readString();
+            url = in.readString();
+            views = in.readInt();
+            images = in.createStringArrayList();
+            state = in.readByte() != 0;
+        }
+
+        public static final Creator<DataBean> CREATOR = new Creator<DataBean>() {
+            @Override
+            public DataBean createFromParcel(Parcel in) {
+                return new DataBean(in);
+            }
+
+            @Override
+            public DataBean[] newArray(int size) {
+                return new DataBean[size];
+            }
+        };
 
         public String get_id() {
             return _id;
@@ -207,5 +240,27 @@ public  class MeiZiBean {
             this.state = state;
         }
 
+        @Override
+        public int describeContents() {
+            return 0;
+        }
+
+        @Override
+        public void writeToParcel(Parcel dest, int flags) {
+            dest.writeString(_id);
+            dest.writeString(author);
+            dest.writeString(category);
+            dest.writeString(createdAt);
+            dest.writeString(desc);
+            dest.writeInt(likeCounts);
+            dest.writeString(publishedAt);
+            dest.writeInt(stars);
+            dest.writeString(title);
+            dest.writeString(type);
+            dest.writeString(url);
+            dest.writeInt(views);
+            dest.writeStringList(images);
+            dest.writeByte((byte) (state ? 1 : 0));
+        }
     }
 }

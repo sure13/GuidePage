@@ -15,6 +15,7 @@ public class DaoHelper   extends SQLiteOpenHelper {
 
     public DaoHelper(Context context ){
         super(context, Dao.DATABASE_NAME,null , Dao.DATABASE_VERSION);
+
     }
 
 
@@ -26,6 +27,13 @@ public class DaoHelper   extends SQLiteOpenHelper {
            + Dao.ACCOUNT + " VARCHAR(30),"
            + Dao.PICTURE + " BLOB,"
            + Dao.PASSWORD  + " VARCHAR(30)" + ");");
+
+        sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS  " + Dao.NEWS_TABLE + " ( "
+                + Dao.NEWS_ID  + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + Dao.NEWS_IMAGE  + " VARCHAR(30),"
+                + Dao.NEWS_AUTHOR + " VARCHAR(30),"
+                + Dao.NEWS_DATA + " VARCHAR(30),"
+                + Dao.NEWS_URL  + " VARCHAR(30)" + ");");
 
    initData(sqLiteDatabase);
 
@@ -46,6 +54,7 @@ public class DaoHelper   extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
 
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + Dao.USER_TABLE  );
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + Dao.NEWS_TABLE  );
         onCreate(sqLiteDatabase);
     }
 }

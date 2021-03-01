@@ -25,4 +25,10 @@
     <string name="off">关</string>
     <string name="network_connection">请先连接网络！！！！</string>
     <string name="connetction_error">加载失败，请稍后再试！</string>
+
+    <string name="all_select">全选</string>
+    <string name="delete">删除</string>
+    <string name="not_all_select">全不选</string>
+    <string name="save">保存</string>
+    <string name="edit">编辑</string>
 </resources>

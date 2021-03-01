@@ -13,10 +13,58 @@
        android:textSize="@dimen/album_sp_20"
        android:visibility="gone"/>
 
+<!--   <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--       android:layout_width="match_parent"-->
+<!--       android:layout_height="match_parent"-->
+<!--       android:layout_marginRight="@dimen/album_dp_50">-->
+
+<!--      <ImageView-->
+<!--          android:id="@+id/choose"-->
+<!--          android:layout_width="wrap_content"-->
+<!--          android:layout_height="wrap_content"-->
+<!--          android:src="@mipmap/add"-->
+<!--          android:layout_marginBottom="140dp"-->
+<!--          android:layout_alignParentRight="true"-->
+<!--          android:layout_centerVertical="true"-->
+<!--          />-->
+
+<!--      <ImageView-->
+<!--          android:id="@+id/all_select"-->
+<!--          android:layout_width="wrap_content"-->
+<!--          android:layout_height="wrap_content"-->
+<!--          android:src="@mipmap/add"-->
+<!--          android:layout_marginBottom="140dp"-->
+<!--          android:layout_alignParentRight="true"-->
+<!--          android:layout_centerVertical="true"-->
+<!--          android:alpha="0"/>-->
+<!--      <ImageView-->
+<!--          android:id="@+id/not_all_select"-->
+<!--          android:layout_width="wrap_content"-->
+<!--          android:layout_height="wrap_content"-->
+<!--          android:src="@mipmap/add"-->
+<!--          android:layout_marginBottom="140dp"-->
+<!--          android:layout_alignParentRight="true"-->
+<!--          android:layout_centerVertical="true"-->
+<!--          android:alpha="0"/>-->
+<!--      <ImageView-->
+<!--          android:id="@+id/delete"-->
+<!--          android:layout_width="wrap_content"-->
+<!--          android:layout_height="wrap_content"-->
+<!--          android:src="@mipmap/add"-->
+<!--          android:layout_marginBottom="140dp"-->
+<!--          android:layout_alignParentRight="true"-->
+<!--          android:layout_centerVertical="true"-->
+<!--          android:alpha="0"/>-->
+<!--   </RelativeLayout>-->
+
    <androidx.recyclerview.widget.RecyclerView
       android:id="@+id/recycler_view_two"
        android:layout_width="match_parent"
-       android:layout_height="match_parent"/>
+       android:layout_height="match_parent"
+       android:visibility="visible"
+       />
+
+
 
 
 

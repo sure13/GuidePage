@@ -3,6 +3,7 @@ package com.android.guidepage.adapter;
 import android.content.Context;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,9 +24,19 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter implements Adapter
     private List<News> newsList;
     private int flag = 0;
 
+    public RecyclerViewAdapter(Context context){
+        this.context = context;
+
+    }
+
     public RecyclerViewAdapter(Context context,List<News> newsList){
         this.context = context;
         this.newsList = newsList;
+    }
+
+    public  void setNewsList(List<News> newsList){
+        this.newsList = newsList;
+    //    notifyDataSetChanged();
     }
 
     public RecyclerViewAdapter(Context context,List<News> newsList,int flag){

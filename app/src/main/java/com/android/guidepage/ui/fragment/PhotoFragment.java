@@ -3,25 +3,19 @@ package com.android.guidepage.ui.fragment;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Interpolator;
-import android.view.animation.LinearInterpolator;
-import android.view.animation.PathInterpolator;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.PopupWindow;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.android.guidepage.MyApplication;
 import com.android.guidepage.R;
@@ -34,39 +28,30 @@ import com.android.guidepage.ui.activity.MainActivity;
 import com.android.guidepage.util.NetworkUtil;
 import com.android.guidepage.view.PhotoShowActivity;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.StaggeredGridLayoutManager;
-
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Retrofit;
 import rx.Observable;
 import rx.Observer;
-import rx.Scheduler;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
-public class TwoFragment extends Fragment {
+public class PhotoFragment extends Fragment {
 
-    public static TwoFragment twoFragment;
-    public static MainActivity mainActivity;
-    private Context context;
+    public static PhotoFragment twoFragment;
+    public static Context mContext;
 
     private RecyclerView recyclerView;
     private TwoFragmentAdapter adapter;
     private List<MeiZiBean.DataBean> dataBeanList;
     private TextView networkText;
 
-    public static final TwoFragment getInstance(final MainActivity mActivity){
+    public static final PhotoFragment getInstance(final Context context){
         if (twoFragment == null){
-            twoFragment = new TwoFragment();
+            twoFragment = new PhotoFragment();
         }
-        mainActivity = mActivity;
+        mContext = context;
         return twoFragment;
     }
 
@@ -89,7 +74,6 @@ public class TwoFragment extends Fragment {
 
     private void initData() {
         dataBeanList = new ArrayList<>();
-        context = MyApplication.getInstance();
 ////        getData(1,45);
 //////        Retrofit retrofit = RetrofitManager.getRetrofitInstance(Contast.API_SERVER);
 //        adapter = new TwoFragmentAdapter(context,dataBeanList);
@@ -97,6 +81,19 @@ public class TwoFragment extends Fragment {
 //                4,StaggeredGridLayoutManager.VERTICAL);
 //        recyclerView.setLayoutManager(staggeredGridLayoutManager);
 //        recyclerView.setAdapter(adapter);
+        boolean networkState = NetworkUtil.isNetworkReachable(mContext);
+        networkText.setVisibility(View.GONE);
+        if (networkState){
+            if (dataBeanList.isEmpty()){
+                getData(1,45);
+                Log.i("wxy","-------have not data ---------------");
+            }else{
+                Log.i("wxy","-------have data ---------------");
+            }
+
+        }else{
+            networkText.setVisibility(View.VISIBLE);
+        }
     }
 
     private void initListener() {
@@ -105,13 +102,13 @@ public class TwoFragment extends Fragment {
             @Override
             public void onItemClickListener(String url,int position) {
                 Log.i("wxy", "---------------------onItemClickListener---------------------------");
-                Intent intent = new Intent(context, PhotoShowActivity.class);
+                Intent intent = new Intent(mContext, PhotoShowActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putString("url", url);
                 bundle.putInt("position",position);
                 bundle.putParcelableArrayList("list", (ArrayList<? extends Parcelable>) dataBeanList);
                 intent.putExtras(bundle);
-                mainActivity.startActivity(intent);
+                mContext.startActivity(intent);
 
             }
         });
@@ -124,9 +121,10 @@ public class TwoFragment extends Fragment {
 
 
     public void refeshUI(){
-        adapter = new TwoFragmentAdapter(context);
+        adapter = new TwoFragmentAdapter(mContext);
         StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(
                 4,StaggeredGridLayoutManager.VERTICAL);
+        staggeredGridLayoutManager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_NONE);
         recyclerView.setLayoutManager(staggeredGridLayoutManager);
         recyclerView.setAdapter(adapter);
         adapter.setDataBeanList(dataBeanList);
@@ -170,14 +168,7 @@ public class TwoFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        boolean networkState = NetworkUtil.isNetworkReachable(context);
-        networkText.setVisibility(View.GONE);
-        if (networkState){
-            getData(1,45);
-        }else{
-            networkText.setVisibility(View.VISIBLE);
-        }
-
+        Log.i("wxy","------onResume ---------------"+dataBeanList.size());
     }
 
 }
